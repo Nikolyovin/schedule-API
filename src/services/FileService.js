@@ -1,16 +1,21 @@
 import * as uuid from 'uuid'
 import * as path from 'path'
+import fs from 'fs'
 
 // здесь мы будем записывать на диск картинки отправляемые в реквесте, чтобы не захламлять базу данных
 // uuid нужен чтобы генерировать имя для изображение
 //логика работы в запросе приходит изображение, мы его сохраняем на диск, даем ему имя и это имя сохраняем в бд. потом по этому имени будем доставать нужное изображение
 class FileService {
   savePicture(file) {
+    console.log('file*************', file)
+    //old//
     try {
       const fileName = uuid.v4() + '.jpg'
-      console.log('fileName', fileName)
+      console.log('fileName*************', fileName)
+
       //путь на диске куда файл будем сохранять с помощью path.resolve и добавляет папку которую мы указываем параметрами
       const filePath = path.resolve('static', fileName)
+      console.log('filePath*************', filePath)
       file.mv(filePath)
       return fileName //возвращаем только имя
     } catch (e) {

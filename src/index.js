@@ -9,9 +9,9 @@ const DB_URL = 'mongodb://localhost:27017/schedule'
 
 const app = express()
 
+app.use(fileUpload({})) //подключаем миделвеер fileUpload для работы с файлами, мы будем с фото
 app.use(express.json()) //нужно тк express по дефолту не понимает json
 app.use(express.static('static')) // нужно чтобы сервер мог отдавать статические файлы, например изображения
-app.use(fileUpload({})) //подключаем миделвеер fileUpload для работы с файлами, мы будем с фото
 
 app.use('/api', router)
 
