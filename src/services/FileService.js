@@ -7,11 +7,8 @@ import fs from 'fs'
 //логика работы в запросе приходит изображение, мы его сохраняем на диск, даем ему имя и это имя сохраняем в бд. потом по этому имени будем доставать нужное изображение
 class FileService {
   savePicture(file) {
-    console.log('file*************', file)
-    //old//
     try {
       const fileName = uuid.v4() + '.jpg'
-      console.log('fileName*************', fileName)
 
       //путь на диске куда файл будем сохранять с помощью path.resolve и добавляет папку которую мы указываем параметрами
       const filePath = path.resolve('static', fileName)

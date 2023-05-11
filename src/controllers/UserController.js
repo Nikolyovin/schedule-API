@@ -5,16 +5,8 @@ class UserController {
   async create(req, res) {
     try {
       // req.files.picture тут лежит фото которое мы отправляем
-      // c ui работает без req.files, фотку достаем из боди
-      console.log('req.body***********', req.body)
-      // console.log('req.body.picture***********', JSON.parse(req.body.picture))
       console.log('req.files', req.files)
-      // const user = await UserService.create(req.body)
-      const user = await UserService.create(
-        req.body,
-        JSON.parse(req.body.picture)
-      )
-      // const user = await UserService.create(req.body)
+      const user = await UserService.create(req.body, req.files.picture)
       res.json(user)
     } catch (e) {
       res.status(500).json(e)
