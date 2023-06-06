@@ -6,7 +6,10 @@ class UserController {
     try {
       // req.files.picture тут лежит фото которое мы отправляем
       console.log('req.files', req.files)
-      const user = await UserService.create(req.body, req.files.picture)
+      const user = (await req.files)
+        ? UserService.create(req.body, req.files.picture)
+        : UserService.create(req.body)
+      console.log('1:', 1)
       res.json(user)
     } catch (e) {
       res.status(500).json(e)

@@ -4,6 +4,8 @@ import FileService from './FileService.js'
 //сервис работает только с базой данных; от req res не зависим
 class UserService {
   async create(user, files) {
+    console.log('user', user)
+    console.log('files', files)
     const picture = FileService.savePicture(files) // записываем на диск и сохраняем имя в бд
     const createUser = await User.create({ ...user, picture })
     console.log('createUser', createUser)
