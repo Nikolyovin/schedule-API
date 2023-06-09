@@ -13,7 +13,7 @@ router.delete('/users/:id', UserController.delete)
 router.post('/entries', EntryController.create)
 router.get('/entries', EntryController.getAll)
 router.get('/entries/:id', EntryController.getOne)
-router.put('/entries', EntryController.update)
+router.put('/entries/:id', EntryController.update)
 router.delete('/entries/:id', EntryController.delete)
 
 // router.get('/', UserController.getTest)
