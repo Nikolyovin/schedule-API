@@ -31,9 +31,18 @@ class EntryController {
     }
   }
 
+  // async update(req, res) {
+  //   try {
+  //     const updatedEntry = await EntryService.update(req.body) //{new: true} чтобы вернулся обновленный пост
+  //     return res.json(updatedEntry)
+  //   } catch (e) {
+  //     res.status(500).json(e.message)
+  //   }
+  // }
+
   async update(req, res) {
     try {
-      const updatedEntry = await EntryService.update(req.body) //{new: true} чтобы вернулся обновленный пост
+      const updatedEntry = await EntryService.update(req.params.id, req.body) //{new: true} чтобы вернулся обновленный пост
       return res.json(updatedEntry)
     } catch (e) {
       res.status(500).json(e.message)

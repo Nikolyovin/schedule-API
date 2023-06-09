@@ -4,6 +4,7 @@ import Entry from '../models/Entry.js'
 class EntryService {
   async create(entry) {
     const createEntry = await Entry.create(entry)
+    console.log('createEntry************************', createEntry)
     return createEntry
   }
 
@@ -20,17 +21,28 @@ class EntryService {
     return entry
   }
 
-  async update(entry) {
-    if (!entry._id) {
+  // async update(entry) {
+  //   if (!entry._id) {
+  //     throw new Error('не указан Id')
+  //   }
+  //   const updatedEntry = await Entry.findByIdAndUpdate(entry._id, entry, {
+  //     new: true,
+  //   }) //{new: true} чтобы вернулся обновленный пост
+  //   return updatedEntry
+  // }
+
+  async update(id, entry) {
+    if (!id) {
       throw new Error('не указан Id')
     }
-    const updatedEntry = await Entry.findByIdAndUpdate(entry._id, entry, {
+    const updatedEntry = await Entry.findByIdAndUpdate(id, entry, {
       new: true,
     }) //{new: true} чтобы вернулся обновленный пост
     return updatedEntry
   }
 
   async delete(id) {
+    console.log('удаление')
     if (!id) {
       throw new Error('не указан Id')
     }
