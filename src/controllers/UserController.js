@@ -9,7 +9,6 @@ class UserController {
       const user = (await req.files)
         ? UserService.create(req.body, req.files.picture)
         : UserService.create(req.body)
-      console.log('1:', 1)
       res.json(user)
     } catch (e) {
       res.status(500).json(e)
@@ -37,7 +36,14 @@ class UserController {
 
   async update(req, res) {
     try {
-      const updatedUser = await UserService.update(req.body) //{new: true} чтобы вернулся обновленный пост
+      console.log('req.files', req.files)
+      console.log('req.params.id', req.params.id)
+      console.log('req.body', req.body)
+      // const updatedUser = await UserService.update(req.params.id, req.body)
+      const updatedUser = req.files
+        ? await UserService.update(req.params.id, req.body, req.files.picture)
+        : await UserService.update(req.params.id, req.body)
+      console.log('updatedUser:', updatedUser)
       return res.json(updatedUser)
     } catch (e) {
       res.status(500).json(e.message)

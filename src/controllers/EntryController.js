@@ -44,6 +44,7 @@ class EntryController {
     try {
       console.log('req', req.params.id, req.body)
       const updatedEntry = await EntryService.update(req.params.id, req.body) //{new: true} чтобы вернулся обновленный пост
+      console.log('updatedUser:', updatedUser)
       return res.json(updatedEntry)
     } catch (e) {
       res.status(500).json(e.message)

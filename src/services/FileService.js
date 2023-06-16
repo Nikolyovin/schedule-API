@@ -12,7 +12,7 @@ class FileService {
 
       //путь на диске куда файл будем сохранять с помощью path.resolve и добавляет папку которую мы указываем параметрами
       const filePath = path.resolve('static', fileName)
-      console.log('filePath*************', filePath)
+      // console.log('filePath*************', filePath)
       file.mv(filePath)
       return fileName //возвращаем только имя
     } catch (e) {

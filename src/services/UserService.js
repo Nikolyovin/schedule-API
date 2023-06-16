@@ -4,8 +4,8 @@ import FileService from './FileService.js'
 //сервис работает только с базой данных; от req res не зависим
 class UserService {
   async create(user, files) {
-    console.log('user', user)
-    console.log('files', files)
+    // console.log('user', user)
+    // console.log('files', files)
     const picture = FileService.savePicture(files) // записываем на диск и сохраняем имя в бд
     const createUser = await User.create({ ...user, picture })
     console.log('createUser', createUser)
@@ -25,14 +25,26 @@ class UserService {
     return user
   }
 
-  async update(user) {
-    if (!user._id) {
+  async update(id, user, files) {
+    if (!id) {
       throw new Error('не указан Id')
     }
-    const updatedUser = await User.findByIdAndUpdate(user._id, user, {
+
+    const updatedUser = await User.findByIdAndUpdate(id, user, {
       new: true,
     }) //{new: true} чтобы вернулся обновленный пост
     return updatedUser
+
+    // const picture = FileService.savePicture(files)
+    // const updatedUser = await User.findByIdAndUpdate(
+    //   id,
+    //   { ...user, picture },
+    //   {
+    //     new: true,
+    //   }
+    // ) //{new: true} чтобы вернулся обновленный пост
+    // console.log('updatedUser', updatedUser)
+    // return updatedUser
   }
 
   async delete(id) {
