@@ -36,14 +36,11 @@ class UserController {
 
   async update(req, res) {
     try {
-      console.log('req.files', req.files)
-      console.log('req.params.id', req.params.id)
-      console.log('req.body', req.body)
-      // const updatedUser = await UserService.update(req.params.id, req.body)
+      console.log('req.files*****', req.files)
       const updatedUser = req.files
         ? await UserService.update(req.params.id, req.body, req.files.picture)
         : await UserService.update(req.params.id, req.body)
-      console.log('updatedUser:', updatedUser)
+      console.log('updatedUser******:', updatedUser)
       return res.json(updatedUser)
     } catch (e) {
       res.status(500).json(e.message)

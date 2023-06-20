@@ -30,20 +30,28 @@ class UserService {
       throw new Error('не указан Id')
     }
 
-    const updatedUser = await User.findByIdAndUpdate(id, user, {
-      new: true,
-    }) //{new: true} чтобы вернулся обновленный пост
-    return updatedUser
+    if (files) {
+      const picture = FileService.savePicture(files)
+      const updatedUser = await User.findByIdAndUpdate(
+        id,
+        { ...user, picture },
+        { new: true }
+      ) //{new: true} чтобы вернулся обновленный пост
+      return updatedUser
+    } else {
+      const updatedUser = await User.findByIdAndUpdate(id, user, {
+        new: true,
+      })
+      return updatedUser
+    }
 
-    // const picture = FileService.savePicture(files)
-    // const updatedUser = await User.findByIdAndUpdate(
-    //   id,
-    //   { ...user, picture },
-    //   {
-    //     new: true,
-    //   }
-    // ) //{new: true} чтобы вернулся обновленный пост
-    // console.log('updatedUser', updatedUser)
+    // const updatedUser = await User.findByIdAndUpdate(id, user, {
+    //   new: true,
+    // })
+
+    // const updatedUser = await User.findByIdAndUpdate(id, user, {
+    //   new: true,
+    // }) //{new: true} чтобы вернулся обновленный пост
     // return updatedUser
   }
 
