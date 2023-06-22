@@ -6,6 +6,7 @@ class EntryController {
     try {
       console.log('req.body', req.body)
       const entry = await EntryService.create(req.body)
+      console.log('entry***', entry)
       res.json(entry)
     } catch (e) {
       res.status(500).json(e)
@@ -30,15 +31,6 @@ class EntryController {
       res.status(500).json(e.message) // e.message потому что мы ошибку создаем через throw new Error в Сервисах
     }
   }
-
-  // async update(req, res) {
-  //   try {
-  //     const updatedEntry = await EntryService.update(req.body) //{new: true} чтобы вернулся обновленный пост
-  //     return res.json(updatedEntry)
-  //   } catch (e) {
-  //     res.status(500).json(e.message)
-  //   }
-  // }
 
   async update(req, res) {
     try {

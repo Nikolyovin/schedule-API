@@ -3,8 +3,9 @@ import Entry from '../models/Entry.js'
 //сервис работает только с базой данных; от req res не зависим
 class EntryService {
   async create(entry) {
+    console.log('entry', entry)
     const createEntry = await Entry.create(entry)
-    console.log('createEntry************************', createEntry)
+    console.log('createEntry', createEntry)
     return createEntry
   }
 
@@ -20,16 +21,6 @@ class EntryService {
     const entry = await Entry.findById(id)
     return entry
   }
-
-  // async update(entry) {
-  //   if (!entry._id) {
-  //     throw new Error('не указан Id')
-  //   }
-  //   const updatedEntry = await Entry.findByIdAndUpdate(entry._id, entry, {
-  //     new: true,
-  //   }) //{new: true} чтобы вернулся обновленный пост
-  //   return updatedEntry
-  // }
 
   async update(id, entry) {
     if (!id) {
