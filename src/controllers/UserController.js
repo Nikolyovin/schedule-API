@@ -9,6 +9,7 @@ class UserController {
       const user = (await req.files)
         ? UserService.create(req.body, req.files.picture)
         : UserService.create(req.body)
+
       res.json(user)
     } catch (e) {
       res.status(500).json(e)
@@ -41,6 +42,7 @@ class UserController {
         ? await UserService.update(req.params.id, req.body, req.files.picture)
         : await UserService.update(req.params.id, req.body)
       console.log('updatedUser******:', updatedUser)
+
       return res.json(updatedUser)
     } catch (e) {
       res.status(500).json(e.message)
@@ -50,6 +52,7 @@ class UserController {
   async delete(req, res) {
     try {
       const user = await UserService.delete(req.params.id)
+
       return res.json(user)
     } catch (e) {
       res.status(500).json(e)
